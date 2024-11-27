@@ -3,16 +3,13 @@
 #include <sstream>
 #include <GL/glew.h>
 
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
-
 #include "engine.h"
 #include "file_utility.h"
 #include "scene.h"
 
 namespace gpr5300
 {
-    class HelloTriangle final : public Scene
+    class HelloQuad final : public Scene
     {
     public:
         void Begin() override;
@@ -23,13 +20,12 @@ namespace gpr5300
         GLuint fragmentShader_ = 0;
         GLuint program_ = 0;
         GLuint vao_ = 0;
-        unsigned int texture_;
     };
 
-    void HelloTriangle::Begin()
+    void HelloQuad::Begin()
     {
         //Load shaders
-        const auto vertexContent = LoadFile("C:/Users/maxen/source/repos/samples-Tornade-10/data/shaders/hello_triangle/triangle.vert");
+        const auto vertexContent = LoadFile("data/shaders/hello_quad/uniform.vert");
         const auto* ptr = vertexContent.data();
         vertexShader_ = glCreateShader(GL_VERTEX_SHADER);
         glShaderSource(vertexShader_, 1, &ptr, nullptr);
@@ -41,7 +37,7 @@ namespace gpr5300
         {
             std::cerr << "Error while loading vertex shader\n";
         }
-        const auto fragmentContent = LoadFile("C:/Users/maxen/source/repos/samples-Tornade-10/data/shaders/hello_triangle/triangle.frag");
+        const auto fragmentContent = LoadFile("data/shaders/hello_quad/uniform.frag");
         ptr = fragmentContent.data();
         fragmentShader_ = glCreateShader(GL_FRAGMENT_SHADER);
         glShaderSource(fragmentShader_, 1, &ptr, nullptr);
@@ -66,39 +62,11 @@ namespace gpr5300
             std::cerr << "Error while linking shader program\n";
         }
 
-        //Load images
-        unsigned int texture;
-        glGenTextures(1, &texture);
-        glBindTexture(GL_TEXTURE_2D, texture);
-        // set the texture wrapping/filtering options (on the currently bound texture object)
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        // load and generate the texture
-        int width, height, nrChannels;
-        unsigned char* data = stbi_load("C:/Users/maxen/source/repos/samples-Tornade-10/textures/container.jpg", &width, &height, &nrChannels, 0);
-        if (data)
-        {
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-            glGenerateMipmap(GL_TEXTURE_2D);
-        }
-        else
-        {
-            std::cout << "Failed to load texture" << std::endl;
-        }
-        stbi_image_free(data);
-        texture_ = texture;
-
-
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-        glEnableVertexAttribArray(2);
-
         //Empty vao
         glCreateVertexArrays(1, &vao_);
     }
 
-    void HelloTriangle::End()
+    void HelloQuad::End()
     {
         //Unload program/pipeline
         glDeleteProgram(program_);
@@ -110,18 +78,17 @@ namespace gpr5300
 
     }
 
-    void HelloTriangle::Update(float dt)
+    void HelloQuad::Update(float dt)
     {
         //Draw program
         glUseProgram(program_);
-        glBindTexture(GL_TEXTURE_2D, texture_);
         glBindVertexArray(vao_);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawArrays(GL_LINE_STRIP, 0, 6);
     }
 }
 int main(int argc, char** argv)
 {
-    gpr5300::HelloTriangle scene;
+    gpr5300::HelloQuad scene;
     gpr5300::Engine engine(&scene);
     engine.Run();
 
