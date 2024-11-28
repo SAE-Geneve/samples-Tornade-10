@@ -6,6 +6,10 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 #include "engine.h"
 #include "file_utility.h"
 #include "scene.h"
@@ -18,11 +22,15 @@ namespace gpr5300
         void Begin() override;
         void End() override;
         void Update(float dt) override;
+
+        float elapsed_time_ = 0;
+
     private:
         GLuint vertexShader_ = 0;
         GLuint fragmentShader_ = 0;
         GLuint program_ = 0;
         GLuint vao_ = 0;
+
         unsigned int texture_;
     };
 
@@ -114,6 +122,22 @@ namespace gpr5300
 
     void HelloTriangle::Update(float dt)
     {
+        elapsed_time_ += dt;
+
+
+        glm::vec4 vec(1.0f, 0.0f, 0.0f, 1.0f);
+        glm::mat4 trans = glm::mat4(1.0f);
+
+        trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.0f));
+        trans = glm::rotate(trans, elapsed_time_, glm::vec3(0.0, 0.0, 1.0));
+        trans = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5));
+
+    	vec = trans * vec;
+        std::cout << vec.x << vec.y << vec.z << std::endl;
+
+        unsigned int transformLoc = glGetUniformLocation(program_, "transform");
+        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
+    
         //Draw program
         glUseProgram(program_);
         glBindTexture(GL_TEXTURE_2D, texture_);
