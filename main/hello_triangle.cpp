@@ -21,7 +21,8 @@ class HelloTriangle final : public Scene {
   void Begin() override;
   void End() override;
   void Update(float dt) override;
-  void OnEvent(const SDL_Event& event, const float dt) override;
+  void OnEvent(const SDL_Event &event) override;
+  void UpdateCamera(const float dt) override;
 
   float elapsed_time_ = 0;
 
@@ -36,8 +37,7 @@ class HelloTriangle final : public Scene {
   unsigned int texture_;
 };
 
-void HelloTriangle::Begin()
-{
+void HelloTriangle::Begin() {
 
   camera_ = Camera();
 
@@ -122,6 +122,7 @@ void HelloTriangle::End() {
 }
 
 void HelloTriangle::Update(float dt) {
+  UpdateCamera(dt);
   elapsed_time_ += dt;
 
   glEnable(GL_DEPTH_TEST);
@@ -138,7 +139,7 @@ void HelloTriangle::Update(float dt) {
   model = glm::rotate(model, elapsed_time_ * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
 //  view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
 
-  projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+  projection = glm::perspective(glm::radians(camera_.Zoom), 800.0f / 600.0f, 0.1f, 100.0f);
 
   int modelLoc = glGetUniformLocation(program_, "model");
   int viewLoc = glGetUniformLocation(program_, "view");
@@ -169,37 +170,37 @@ void HelloTriangle::Update(float dt) {
   glDrawArrays(GL_TRIANGLES, 0, 36);
 }
 
-void HelloTriangle::OnEvent(const SDL_Event &event, const float dt)
-{
-  // Get keyboard state
-  const Uint8* state = SDL_GetKeyboardState(NULL);
+void HelloTriangle::UpdateCamera(float dt) {
 
+  // Get keyboard state
+  const Uint8 *state = SDL_GetKeyboardState(NULL);
+  int mouseX;
+  int mouseY;
   //Send WASD as enum
   // Camera controls
-  if (state[SDL_SCANCODE_W])
-  {
+  if (state[SDL_SCANCODE_W]) {
     camera_.ProcessKeyboard(FORWARD, dt);
   }
-  if (state[SDL_SCANCODE_S])
-  {
+  if (state[SDL_SCANCODE_S]) {
     camera_.ProcessKeyboard(BACKWARD, dt);
   }
-  if (state[SDL_SCANCODE_A])
-  {
+  if (state[SDL_SCANCODE_A]) {
     camera_.ProcessKeyboard(LEFT, dt);
   }
-  if (state[SDL_SCANCODE_D])
-  {
+  if (state[SDL_SCANCODE_D]) {
     camera_.ProcessKeyboard(RIGHT, dt);
   }
-//  if (state[SDL_SCANCODE_SPACE])
-//  {
-//    camera_.ProcessKeyboard(UP, dt);
-//  }
-//  if (state[SDL_SCANCODE_LCTRL])
-//  {
-//    camera_.ProcessKeyboard(DOWN, dt);
-//  }
+
+  Uint32 mouse_state = SDL_GetRelativeMouseState(&mouseX, &mouseY);
+  if (mouse_state) {
+    camera_.ProcesssMouseMovement(mouseX, mouseY, true);
+  }
+}
+
+void HelloTriangle::OnEvent(const SDL_Event &event) {
+  if (event.type == SDL_MOUSEWHEEL) {
+    camera_.ProcessMouseScroll(event.wheel.y);
+  }
 }
 
 }

@@ -47,12 +47,11 @@ void Engine::Run() {
         }
         default:break;
       }
+      scene_->OnEvent(event);
       ImGui_ImplSDL2_ProcessEvent(&event);
     }
     glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
-
-    scene_->OnEvent(event, dt.count());
 
     scene_->Update(dt.count());
 
