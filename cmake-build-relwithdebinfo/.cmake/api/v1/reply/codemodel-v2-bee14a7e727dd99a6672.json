@@ -1,0 +1,96 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-RelWithDebInfo-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"name" : "RelWithDebInfo",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "GPR5300",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Common::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Common-RelWithDebInfo-92b1c7b55399a187376e.json",
+					"name" : "Common",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "data_target::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-data_target-RelWithDebInfo-0bc80b56dbf02dcc99e3.json",
+					"name" : "data_target",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "hello_quad::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-hello_quad-RelWithDebInfo-314d7fca52fda00cb654.json",
+					"name" : "hello_quad",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "hello_triangle::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-hello_triangle-RelWithDebInfo-cdab8bacc9c3dbd1239a.json",
+					"name" : "hello_triangle",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "shader_target::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-shader_target-RelWithDebInfo-a63748ad36385a5444df.json",
+					"name" : "shader_target",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-relwithdebinfo",
+		"source" : "C:/Users/maxen/source/repos/samples-Tornade-10"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
