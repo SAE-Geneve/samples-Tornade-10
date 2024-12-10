@@ -83,7 +83,8 @@ file(GLOB_RECURSE DATA_FILES
 
 
 file(GLOB_RECURSE COMMON_FILES src/*.cpp include/*.h)
-add_library(Common STATIC ${COMMON_FILES} ${SHADER_FILES})
+add_library(Common STATIC ${COMMON_FILES} ${SHADER_FILES}
+        include/camera.h)
 target_include_directories(Common PUBLIC include/  ${Stb_INCLUDE_DIR})
 target_link_libraries(Common PUBLIC GLEW::GLEW glm::glm SDL2::SDL2 SDL2::SDL2main imgui::imgui)
 set_target_properties(Common PROPERTIES UNITY_BUILD ON)
@@ -101,6 +102,8 @@ file(GLOB MAIN_FILES main/*.cpp)
 foreach(MAIN_FILE ${MAIN_FILES})
     get_filename_component(MAIN_NAME ${MAIN_FILE} NAME_WE)
     
-    add_executable(${MAIN_NAME} ${MAIN_FILE})
+    add_executable(${MAIN_NAME} ${MAIN_FILE}
+            include/light.h
+            include/light.h)
     target_link_libraries(${MAIN_NAME} PUBLIC Common) 
 endforeach()

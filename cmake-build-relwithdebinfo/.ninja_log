@@ -1,0 +1,19 @@
+# ninja log v6
+45	143	7545111784071555	data/shaders/hello_triangle/triangle.frag	5d5703c6b5bb2d7f
+45	143	7545111784071555	C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-relwithdebinfo/data/shaders/hello_triangle/triangle.frag	5d5703c6b5bb2d7f
+4	68	7545121454971953	data/shaders/hello_triangle/triangle.vert	45e9d931e760c061
+4	68	7545121454971953	C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-relwithdebinfo/data/shaders/hello_triangle/triangle.vert	45e9d931e760c061
+31	236	7545111783796683	data/shaders/hello_quad/uniform.frag	c1039ec2728b87f5
+31	236	7545111783796683	C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-relwithdebinfo/data/shaders/hello_quad/uniform.frag	c1039ec2728b87f5
+7	237	7545111783796683	C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-relwithdebinfo/data/shaders/hello_quad/quad.frag	d815f8bd64dfdf0d
+14	1915	7550287951988486	CMakeFiles/Common.dir/Unity/unity_0_cxx.cxx.obj	8b11c2c421adb9d3
+7	237	7545111783796683	data/shaders/hello_quad/quad.frag	d815f8bd64dfdf0d
+20	237	7545111783857367	data/shaders/hello_quad/quad.vert	8543c41465101618
+20	237	7545111783857367	C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-relwithdebinfo/data/shaders/hello_quad/quad.vert	8543c41465101618
+37	267	7545111784092267	data/shaders/hello_quad/uniform.vert	c0903043bfe627d5
+1916	2034	7550287971000458	Common.lib	db3b538b35d14671
+19	1285	7550287952029889	CMakeFiles/hello_triangle.dir/main/hello_triangle.cpp.obj	4d3ee4d8e3765033
+37	267	7545111784092267	C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-relwithdebinfo/data/shaders/hello_quad/uniform.vert	c0903043bfe627d5
+2035	3324	7550287972195765	hello_triangle.exe	483493ed3718eae1
+44	1167	7550288214485168	CMakeFiles/hello_triangle.dir/main/hello_triangle.cpp.obj	4d3ee4d8e3765033
+1167	2433	7550288225717885	hello_triangle.exe	483493ed3718eae1

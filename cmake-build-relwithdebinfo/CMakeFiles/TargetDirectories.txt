@@ -1,0 +1,7 @@
+C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-relwithdebinfo/CMakeFiles/shader_target.dir
+C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-relwithdebinfo/CMakeFiles/data_target.dir
+C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-relwithdebinfo/CMakeFiles/Common.dir
+C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-relwithdebinfo/CMakeFiles/hello_quad.dir
+C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-relwithdebinfo/CMakeFiles/hello_triangle.dir
+C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-relwithdebinfo/CMakeFiles/edit_cache.dir
+C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-relwithdebinfo/CMakeFiles/rebuild_cache.dir
