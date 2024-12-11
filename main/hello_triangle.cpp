@@ -103,10 +103,10 @@ void HelloTriangle::Begin() {
   stbi_image_free(data);
   texture_ = texture;
 
-  //glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-  //glEnableVertexAttribArray(2);
+  glEnable(GL_CULL_FACE);
+  glCullFace(GL_BACK);
+  glFrontFace(GL_CCW);
 
-  //Empty vao
   glCreateVertexArrays(1, &vao_);
 }
 
