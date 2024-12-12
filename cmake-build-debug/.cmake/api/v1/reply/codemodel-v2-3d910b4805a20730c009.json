@@ -1,0 +1,96 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "GPR5300",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Common::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Common-Debug-5ec33638fb54c5ef343d.json",
+					"name" : "Common",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "data_target::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-data_target-Debug-5806beab9c8d398797b8.json",
+					"name" : "data_target",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "hello_quad::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-hello_quad-Debug-c2179fb1841436a446d1.json",
+					"name" : "hello_quad",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "hello_triangle::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-hello_triangle-Debug-5c5014cf106e07570495.json",
+					"name" : "hello_triangle",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "shader_target::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-shader_target-Debug-44611f041a07b8ed4baf.json",
+					"name" : "shader_target",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-debug",
+		"source" : "C:/Users/maxen/source/repos/samples-Tornade-10"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

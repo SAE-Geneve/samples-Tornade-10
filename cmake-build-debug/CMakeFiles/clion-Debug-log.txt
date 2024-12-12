@@ -39,6 +39,6 @@ The package stb provides CMake targets:
     find_package(Stb REQUIRED)
     target_include_directories(main PRIVATE ${Stb_INCLUDE_DIR})
 -- Running vcpkg install - done
--- Configuring done (8.9s)
+-- Configuring done (5.5s)
 -- Generating done (0.0s)
 -- Build files have been written to: C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-debug

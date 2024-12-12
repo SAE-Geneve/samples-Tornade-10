@@ -1,13 +1,13 @@
 #version 300 es
 precision highp float;
 
-in vec3 fragColor;
-in vec2 TexCoord;
+out vec4 FragColor;
 
-layout(location = 0) out vec4 outColor;
+in vec2 TexCoords;
 
-uniform sampler2D ourTexture;
+uniform sampler2D texture1;
 
-void main() {
-    outColor = texture(ourTexture, TexCoord);
+void main()
+{
+    FragColor = texture(texture1, TexCoords);
 }

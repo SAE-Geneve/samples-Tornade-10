@@ -1,9 +1,10 @@
 "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=RelWithDebInfo "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2024.2.1/bin/ninja/win/x64/ninja.exe" -DCMAKE_TOOLCHAIN_FILE=C:/Dev/vcpkg/scripts/buildsystems/vcpkg.cmake -G Ninja -S C:\Users\maxen\source\repos\samples-Tornade-10 -B C:\Users\maxen\source\repos\samples-Tornade-10\cmake-build-relwithdebinfo
 -- Running vcpkg install
+waiting to take filesystem lock on C:\Dev\vcpkg\.vcpkg-root...
 Detecting compiler hash for triplet x64-windows...
 Compiler found: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.38.33130/bin/Hostx64/x64/cl.exe
 All requested packages are currently installed.
-Total install time: 200 ns
+Total install time: 100 ns
 The package glew is compatible with built-in CMake targets:
 
     find_package(GLEW REQUIRED)
@@ -38,6 +39,6 @@ The package stb provides CMake targets:
     find_package(Stb REQUIRED)
     target_include_directories(main PRIVATE ${Stb_INCLUDE_DIR})
 -- Running vcpkg install - done
--- Configuring done (3.0s)
--- Generating done (0.1s)
+-- Configuring done (8.6s)
+-- Generating done (0.0s)
 -- Build files have been written to: C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-relwithdebinfo

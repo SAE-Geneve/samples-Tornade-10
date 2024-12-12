@@ -104,6 +104,7 @@ foreach(MAIN_FILE ${MAIN_FILES})
     
     add_executable(${MAIN_NAME} ${MAIN_FILE}
             include/light.h
-            include/light.h)
+            include/light.h
+            include/shader.h)
     target_link_libraries(${MAIN_NAME} PUBLIC Common) 
 endforeach()
