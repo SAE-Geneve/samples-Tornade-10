@@ -106,6 +106,10 @@ foreach(MAIN_FILE ${MAIN_FILES})
             include/light.h
             include/light.h
             include/shader.h
+            include/framebuffer.h
+            include/framebuffer.h
+            include/vao.h
+            include/vbo.h
     )
     target_link_libraries(${MAIN_NAME} PUBLIC Common) 
 endforeach()

@@ -25,8 +25,8 @@
 		[
 			"C:/Dev/vcpkg/scripts/buildsystems/vcpkg.cmake",
 			"CMakeLists.txt",
-			"cmake-build-release/vcpkg_installed/x64-windows/share/sdl2/SDL2mainTargets.cmake",
-			"cmake-build-release/vcpkg_installed/x64-windows/share/sdl2/SDL2Config.cmake"
+			"cmake-build-relwithdebinfo/vcpkg_installed/x64-windows/share/sdl2/SDL2mainTargets.cmake",
+			"cmake-build-relwithdebinfo/vcpkg_installed/x64-windows/share/sdl2/SDL2Config.cmake"
 		],
 		"nodes" : 
 		[
@@ -48,7 +48,7 @@
 			{
 				"command" : 2,
 				"file" : 1,
-				"line" : 110,
+				"line" : 114,
 				"parent" : 0
 			},
 			{
@@ -97,7 +97,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /GR /EHsc /O2 /Ob2 /DNDEBUG -std:c++20 -MD"
+					"fragment" : "/DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD"
 				},
 				{
 					"backtrace" : 3,
@@ -136,12 +136,12 @@
 				{
 					"backtrace" : 3,
 					"isSystem" : true,
-					"path" : "C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-release/vcpkg_installed/x64-windows/include"
+					"path" : "C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-relwithdebinfo/vcpkg_installed/x64-windows/include"
 				},
 				{
 					"backtrace" : 3,
 					"isSystem" : true,
-					"path" : "C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-release/vcpkg_installed/x64-windows/include/SDL2"
+					"path" : "C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-relwithdebinfo/vcpkg_installed/x64-windows/include/SDL2"
 				}
 			],
 			"language" : "CXX",
@@ -172,11 +172,11 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "/DWIN32 /D_WINDOWS /GR /EHsc /O2 /Ob2 /DNDEBUG -MD",
+				"fragment" : "/DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD",
 				"role" : "flags"
 			},
 			{
-				"fragment" : "/machine:x64 /INCREMENTAL:NO /subsystem:console",
+				"fragment" : "/machine:x64 /debug /INCREMENTAL /subsystem:console",
 				"role" : "flags"
 			},
 			{
@@ -255,7 +255,10 @@
 			"sourceIndexes" : 
 			[
 				1,
-				2
+				2,
+				3,
+				4,
+				5
 			]
 		}
 	],
@@ -275,6 +278,21 @@
 		{
 			"backtrace" : 2,
 			"path" : "include/shader.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "include/framebuffer.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "include/vao.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "include/vbo.h",
 			"sourceGroupIndex" : 1
 		}
 	],

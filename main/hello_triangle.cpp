@@ -17,6 +17,10 @@
 #include "camera.h"
 #include "shader.h"
 
+#include "vao.h"
+#include "vbo.h"
+#include "framebuffer.h"
+
 namespace gpr5300 {
 class HelloTriangle final : public Scene {
  public:
@@ -37,17 +41,14 @@ class HelloTriangle final : public Scene {
   GLuint cubemap_vao_ = 0;
   GLuint map_textureID = 0;
 
-  unsigned int cubeVAO, cubeVBO;
-  unsigned int skyboxVAO, skyboxVBO;
-
-  unsigned int framebufferVAO, framebufferVBO;
-
-  unsigned int FBO, RBO;
-
-  unsigned int texture_color_buffer;
   unsigned int cube_texture_;
 
   Camera camera_;
+  Framebuffer framebuffer_;
+
+  //Refactor in a VAO/VBO Class DONE !
+  VAO cubeVAO, skyboxVAO, framebufferVAO;
+  VBO cubeVBO, skyboxVBO, framebufferVBO;
 
   std::array<std::string, 6> faces
       {
@@ -71,26 +72,29 @@ void HelloTriangle::Begin() {
   framebuffer_shader = Shader("data/shaders/hello_triangle/framebuffer.vert", "data/shaders/hello_triangle/framebuffer.frag");
 
 
-  glGenFramebuffers(1, &FBO);
-  glBindFramebuffer(GL_FRAMEBUFFER, FBO);
+//  glGenFramebuffers(1, &FBO);
+//  glBindFramebuffer(GL_FRAMEBUFFER, FBO);
+//
+//  glGenTextures(1, &texture_color_buffer);
+//  glBindTexture(GL_TEXTURE_2D, texture_color_buffer);
+//  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 800, 600, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+//  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+//  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+//  glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture_color_buffer, 0);
+//
+//  glGenRenderbuffers(1, &RBO);
+//  glBindRenderbuffer(GL_RENDERBUFFER, RBO);
+//  glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 800, 600);
+//  glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, RBO);
+//
+//  if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+//    std::cout << "Framebuffer is not complete!" << std::endl;
+//  }
+//
+//  glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-  glGenTextures(1, &texture_color_buffer);
-  glBindTexture(GL_TEXTURE_2D, texture_color_buffer);
-  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 800, 600, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-  glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture_color_buffer, 0);
+ framebuffer_.FramebufferInit(800, 600);
 
-  glGenRenderbuffers(1, &RBO);
-  glBindRenderbuffer(GL_RENDERBUFFER, RBO);
-  glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 800, 600);
-  glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, RBO);
-
-  if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
-    std::cout << "Framebuffer is not complete!" << std::endl;
-  }
-
-  glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
   float cubeVertices[] = {
       // positions          // normals
@@ -259,31 +263,32 @@ void HelloTriangle::Begin() {
   glFrontFace(GL_CCW);
 
   // cube VAO
-  glGenVertexArrays(1, &cubeVAO);
-  glGenBuffers(1, &cubeVBO);
-  glBindVertexArray(cubeVAO);
-  glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), &cubeVertices, GL_STATIC_DRAW);
+  cubeVAO.Creat();
+  cubeVBO.Creat();
+  cubeVAO.Bind();
+  cubeVBO.Bind();
+  cubeVBO.BindData(sizeof(cubeVertices), &cubeVertices, GL_STATIC_DRAW);
   glEnableVertexAttribArray(0);
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *) 0);
   glEnableVertexAttribArray(1);
   glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *) (3 * sizeof(float)));
 
   // skybox VAO
-  glGenVertexArrays(1, &skyboxVAO);
-  glGenBuffers(1, &skyboxVBO);
-  glBindVertexArray(skyboxVAO);
-  glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
-  glEnableVertexAttribArray(0);
+  skyboxVAO.Creat();
+  skyboxVBO.Creat();
+  skyboxVAO.Bind();
+  skyboxVBO.Bind();
+  skyboxVBO.BindData(sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
+  glEnableVertexAttribArray(0); // Left astray
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *) 0);
 
+
   // framebuffer VAO
-  glGenVertexArrays(1, &framebufferVAO);
-  glGenBuffers(1, &framebufferVBO);
-  glBindVertexArray(framebufferVAO);
-  glBindBuffer(GL_ARRAY_BUFFER, framebufferVBO);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(rectangleVertices), &rectangleVertices, GL_STATIC_DRAW);
+  framebufferVAO.Creat();
+  framebufferVBO.Creat();
+  framebufferVAO.Bind();
+  framebufferVBO.Bind();
+  framebufferVBO.BindData(sizeof(rectangleVertices), &rectangleVertices, GL_STATIC_DRAW);
   glEnableVertexAttribArray(0);
   glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void *) 0);
   glEnableVertexAttribArray(1);
@@ -308,25 +313,21 @@ void HelloTriangle::End() {
   glDeleteShader(vertexShader_);
   glDeleteShader(fragmentShader_);
 
-  glDeleteVertexArrays(1, &cubeVAO);
-  glDeleteVertexArrays(1, &skyboxVAO);
+  framebuffer_.Delete();
+
+  cubeVAO.Destroy();
+  skyboxVAO.Destroy();
+  framebufferVAO.Destroy();
 }
 
 void HelloTriangle::Update(float dt) {
   UpdateCamera(dt);
   elapsed_time_ += dt;
 
-
-  // std::cout << "First Pass" << "\r";
   glEnable(GL_DEPTH_TEST);
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-  glBindFramebuffer(GL_FRAMEBUFFER, FBO);
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-  glEnable(GL_CULL_FACE);
-
-// Set uniforms, bind VAO, etc.
+  //First pass
+  framebuffer_.FirstPass();
 
   // 3D rotations
   program_.Use();
@@ -335,7 +336,7 @@ void HelloTriangle::Update(float dt) {
   glm::mat4 projection = glm::mat4(1.0f);
 
   model = glm::rotate(model, elapsed_time_ * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
-  projection = glm::perspective(glm::radians(camera_.Zoom), 800.0f / 600.0f, 0.1f, 100.0f);
+  projection = glm::perspective(glm::radians(camera_.Zoom), 1600.0f / 1200.0f, 0.1f, 100.0f);
 
   program_.SetMat4("model", model);
   program_.SetMat4("view", view);
@@ -343,7 +344,7 @@ void HelloTriangle::Update(float dt) {
   program_.SetVec3("cameraPos", camera_.Position);
 
   //For Cubes
-  glBindVertexArray(cubeVAO);
+  cubeVAO.Bind();
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_CUBE_MAP, map_textureID);
   glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -359,26 +360,15 @@ void HelloTriangle::Update(float dt) {
   cubemap_shader.SetMat4("projection", projection);
 
   //Probably the full render, I sure hope so
-  glBindVertexArray(skyboxVAO);
+  skyboxVAO.Bind();
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_CUBE_MAP, map_textureID);
   glDrawArrays(GL_TRIANGLES, 0, 36);
   glBindVertexArray(0);
   glDepthFunc(GL_LESS);
 
-  glDisable(GL_CULL_FACE);
-
   //Second pass
-  // std::cout << "Second Pass" << "\r";
-  glBindFramebuffer(GL_FRAMEBUFFER, 0);
-  glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-  framebuffer_shader.Use();
-
-  glBindVertexArray(framebufferVAO);
-  glDisable(GL_DEPTH_TEST);
-  glBindTexture(GL_TEXTURE_2D, texture_color_buffer);
-  glDrawArrays(GL_TRIANGLES, 0, 6);
-
+  framebuffer_.SecondPass(framebuffer_shader, framebufferVAO);
 }
 
 void HelloTriangle::UpdateCamera(float dt) {

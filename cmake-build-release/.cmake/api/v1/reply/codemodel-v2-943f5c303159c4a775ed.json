@@ -6,7 +6,7 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"jsonFile" : "directory-.-Release-d0094a50bb2071803777.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.18"
@@ -23,7 +23,7 @@
 					]
 				}
 			],
-			"name" : "Debug",
+			"name" : "Release",
 			"projects" : 
 			[
 				{
@@ -47,35 +47,35 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Common::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Common-Debug-35c2452badaf33ff4b40.json",
+					"jsonFile" : "target-Common-Release-052d634549f299a7361f.json",
 					"name" : "Common",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "data_target::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-data_target-Debug-5806beab9c8d398797b8.json",
+					"jsonFile" : "target-data_target-Release-d0ad848904a651d65afd.json",
 					"name" : "data_target",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "hello_quad::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-hello_quad-Debug-5cfc997486f3f9bd3e40.json",
+					"jsonFile" : "target-hello_quad-Release-b57d3315fef349b8c781.json",
 					"name" : "hello_quad",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "hello_triangle::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-hello_triangle-Debug-54087374138e0516604e.json",
+					"jsonFile" : "target-hello_triangle-Release-0a890e8dc3ebc0b6d3b0.json",
 					"name" : "hello_triangle",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "shader_target::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-shader_target-Debug-f3bd9580b011682e0358.json",
+					"jsonFile" : "target-shader_target-Release-78b23da11f972d56fd15.json",
 					"name" : "shader_target",
 					"projectIndex" : 0
 				}
@@ -85,7 +85,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-debug",
+		"build" : "C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-release",
 		"source" : "C:/Users/maxen/source/repos/samples-Tornade-10"
 	},
 	"version" : 

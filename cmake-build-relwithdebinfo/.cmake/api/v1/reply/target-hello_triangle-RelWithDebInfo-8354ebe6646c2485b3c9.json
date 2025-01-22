@@ -48,7 +48,7 @@
 			{
 				"command" : 2,
 				"file" : 1,
-				"line" : 110,
+				"line" : 114,
 				"parent" : 0
 			},
 			{
@@ -255,7 +255,10 @@
 			"sourceIndexes" : 
 			[
 				1,
-				2
+				2,
+				3,
+				4,
+				5
 			]
 		}
 	],
@@ -275,6 +278,21 @@
 		{
 			"backtrace" : 2,
 			"path" : "include/shader.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "include/framebuffer.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "include/vao.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "include/vbo.h",
 			"sourceGroupIndex" : 1
 		}
 	],

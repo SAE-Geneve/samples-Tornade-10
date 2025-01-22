@@ -62,7 +62,7 @@ namespace gpr5300
             std::cerr << "Error while linking shader program\n";
         }
 
-        //Empty vao
+        //Empty skyboxVAO
         glCreateVertexArrays(1, &vao_);
     }
 
