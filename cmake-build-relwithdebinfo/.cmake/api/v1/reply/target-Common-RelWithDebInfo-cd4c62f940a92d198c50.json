@@ -200,7 +200,9 @@
 				10,
 				11,
 				12,
-				13
+				13,
+				14,
+				15
 			]
 		}
 	],
@@ -265,6 +267,16 @@
 		{
 			"backtrace" : 2,
 			"path" : "data/shaders/hello_cube_map/skybox.vert",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 2,
+			"path" : "data/shaders/hello_triangle/framebuffer.frag",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 2,
+			"path" : "data/shaders/hello_triangle/framebuffer.vert",
 			"sourceGroupIndex" : 2
 		},
 		{

@@ -2,21 +2,21 @@ Package: vcpkg-cmake-config
 Version: 2024-05-23
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 64228a63befe8fdd79f4eb7fd4fde10ead3606d8abda0c7419f5689fa01cbb8c
+Abi: 029a1201ac968e6fa14b08ad766e0eae09537a068448fe3a7e518cd5dfd3b9d9
 Status: install ok installed
 
 Package: vcpkg-cmake
 Version: 2024-04-23
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 353af8d72883761e8b7c908b6df269a82e2d789fd65dda7fab5f624871a976d7
+Abi: 59aa32644d97aaac1bc1c564fd163b08f13b019cc42cb1b1cb2a2fdf477ffccb
 Status: install ok installed
 
 Package: egl-registry
 Version: 2024-01-25
 Architecture: x64-windows
 Multi-Arch: same
-Abi: ee12e5f480570b3270a24d20438b1337a0953926bcf40697a33bb3b8ae6abf08
+Abi: 15238be8113cc35f7c04f2960725a926090c17da4839cb3c61655c3fc3f1e674
 Description: EGL API and Extension Registry
 Status: install ok installed
 
@@ -26,7 +26,7 @@ Port-Version: 1
 Depends: egl-registry
 Architecture: x64-windows
 Multi-Arch: same
-Abi: b07f26662844b5005c88058d420f5ae2baf46909727e56e295c8a5fea85a319f
+Abi: a005da4fb4307f306d4aefc64d74afe24088a3844559929034f8e95f252b5e48
 Description: OpenGL, OpenGL ES, and OpenGL ES-SC API and Extension Registry
 Status: install ok installed
 
@@ -36,7 +36,7 @@ Port-Version: 3
 Depends: opengl-registry
 Architecture: x64-windows
 Multi-Arch: same
-Abi: eac2f839e76deeb8e8cd21e2c4a5a1e875800d4c4577a96f28040617ac4005e9
+Abi: b887438aae8fa1a6d20a9a5570ebdf43ce48eeacbabf848181be16a76e13bf81
 Description: Open Graphics Library (OpenGL)[3][4][5] is a cross-language, cross-platform application programming interface (API) for rendering 2D and 3D vector graphics.
 Status: install ok installed
 
@@ -46,7 +46,7 @@ Port-Version: 4
 Depends: opengl, vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-windows
 Multi-Arch: same
-Abi: dea621146a1575382acf2f8210f14d9d613bee907cf588ebd6f4eccccd45c542
+Abi: 215c03a47f20b07a9661673429dd1fad6a14a1c762797bb1d87ed6b3f4a447ec
 Description: The OpenGL Extension Wrangler Library (GLEW) is a cross-platform open-source C/C++ extension loading library.
 Status: install ok installed
 
@@ -56,25 +56,25 @@ Port-Version: 3
 Depends: vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-windows
 Multi-Arch: same
-Abi: eba0cbae7df5a36afcea910100cafea84d0245c33e52d54f140aa543dc5680c0
+Abi: fc954b14c0e0bc03fd5f6724ba3a251c56b87b1692d5559add4fe12ae84d8e36
 Description: OpenGL Mathematics (GLM)
 Status: install ok installed
 
 Package: sdl2
-Version: 2.30.9
+Version: 2.30.11
 Depends: vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 38ed46e85d00352ad0ed927783c9ede73c9a28de8155164e0898c12a93e72284
+Abi: 859a22e12d2e59dbecd3e39f1adf31334e42ae4fd5ce7530811b346310a42731
 Description: Simple DirectMedia Layer is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D.
 Status: install ok installed
 
 Package: imgui
-Version: 1.91.0
+Version: 1.91.6
 Depends: vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-windows
 Multi-Arch: same
-Abi: c4159164f052f628ed1f69075aca60ac847aff4a7820823de72e2d1407dfbe55
+Abi: 2e225adcca015a91f00c31e7736b07005596824d4e00af7bac42abac94f38de0
 Description: Bloat-free Immediate Mode Graphical User interface for C++ with minimal dependencies.
 Status: install ok installed
 
@@ -105,7 +105,7 @@ Version: 2024-07-29
 Port-Version: 1
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 4f799aa6b2d9bd6b42614e4888905e2e30e0ad7a7722fa566a404c6e1e3d7f2c
+Abi: f3020412b6d48005df8fc84f58c478bec5b66291a004707d9a65de499bde900c
 Description: public domain header-only libraries
 Status: install ok installed
 

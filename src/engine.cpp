@@ -41,7 +41,20 @@ void Engine::Run() {
               //TODO do something with the new size
               break;
             }
-            default:break;
+            case SDL_MOUSEBUTTONDOWN:
+              if (event.button.button == SDL_BUTTON_LEFT)
+              {
+                SDL_ShowCursor(SDL_DISABLE);
+                SDL_SetRelativeMouseMode(SDL_TRUE);
+              }
+              break;
+            case SDL_MOUSEBUTTONUP:
+              if (event.button.button == SDL_BUTTON_LEFT)
+              {
+                SDL_ShowCursor(SDL_ENABLE);
+                SDL_SetRelativeMouseMode(SDL_FALSE);
+              }
+              break;
           }
           break;
         }

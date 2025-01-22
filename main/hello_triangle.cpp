@@ -31,6 +31,7 @@ class HelloTriangle final : public Scene {
  private:
   Shader program_ = {}; // It's the OurShader
   Shader cubemap_shader = {};
+  Shader framebuffer_shader = {};
   GLuint vertexShader_ = 0;
   GLuint fragmentShader_ = 0;
   GLuint cubemap_vao_ = 0;
@@ -38,19 +39,25 @@ class HelloTriangle final : public Scene {
 
   unsigned int cubeVAO, cubeVBO;
   unsigned int skyboxVAO, skyboxVBO;
+
+  unsigned int framebufferVAO, framebufferVBO;
+
+  unsigned int FBO, RBO;
+
+  unsigned int texture_color_buffer;
   unsigned int cube_texture_;
 
   Camera camera_;
 
   std::array<std::string, 6> faces
-  {
-    "data/shaders/hello_cube_map/skybox/right.jpg",
-    "data/shaders/hello_cube_map/skybox/left.jpg",
-    "data/shaders/hello_cube_map/skybox/top.jpg",
-    "data/shaders/hello_cube_map/skybox/bottom.jpg",
-    "data/shaders/hello_cube_map/skybox/front.jpg",
-    "data/shaders/hello_cube_map/skybox/back.jpg"
-  };
+      {
+          "data/shaders/hello_cube_map/skybox/right.jpg",
+          "data/shaders/hello_cube_map/skybox/left.jpg",
+          "data/shaders/hello_cube_map/skybox/top.jpg",
+          "data/shaders/hello_cube_map/skybox/bottom.jpg",
+          "data/shaders/hello_cube_map/skybox/front.jpg",
+          "data/shaders/hello_cube_map/skybox/back.jpg"
+      };
 
   //unsigned int cubemapTexture = loadCubemap(faces);
 };
@@ -61,97 +68,135 @@ void HelloTriangle::Begin() {
 
   program_ = Shader("data/shaders/hello_triangle/triangle.vert", "data/shaders/hello_triangle/triangle.frag");
   cubemap_shader = Shader("data/shaders/hello_cube_map/skybox.vert", "data/shaders/hello_cube_map/skybox.frag");
+  framebuffer_shader = Shader("data/shaders/hello_triangle/framebuffer.vert", "data/shaders/hello_triangle/framebuffer.frag");
 
+
+  glGenFramebuffers(1, &FBO);
+  glBindFramebuffer(GL_FRAMEBUFFER, FBO);
+
+  glGenTextures(1, &texture_color_buffer);
+  glBindTexture(GL_TEXTURE_2D, texture_color_buffer);
+  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 800, 600, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+  glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture_color_buffer, 0);
+
+  glGenRenderbuffers(1, &RBO);
+  glBindRenderbuffer(GL_RENDERBUFFER, RBO);
+  glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 800, 600);
+  glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, RBO);
+
+  if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+    std::cout << "Framebuffer is not complete!" << std::endl;
+  }
+
+  glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
   float cubeVertices[] = {
       // positions          // normals
-      // Back face
-      -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, // Bottom-left
-      0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
-      0.5f, -0.5f, -0.5f,  1.0f, 0.0f, // bottom-right
-      0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
-      -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, // bottom-left
-      -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
-      // Front face
-      -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left
-      0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
-      0.5f,  0.5f,  0.5f,  1.0f, 1.0f, // top-right
-      0.5f,  0.5f,  0.5f,  1.0f, 1.0f, // top-right
-      -0.5f,  0.5f,  0.5f,  0.0f, 1.0f, // top-left
-      -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left
-      // Left face
-      -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-right
-      -0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-left
-      -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-left
-      -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-left
-      -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-right
-      -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-right
-      // Right face
-      0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-left
-      0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-right
-      0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
-      0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-right
-      0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-left
-      0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left
-      // Bottom face
-      -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // top-right
-      0.5f, -0.5f, -0.5f,  1.0f, 1.0f, // top-left
-      0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-left
-      0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-left
-      -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-right
-      -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // top-right
-      // Top face
-      -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
-      0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
-      0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
-      0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
-      -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
-      -0.5f,  0.5f,  0.5f,  0.0f, 0.0f  // bottom-left        
+      //Back face
+      0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
+      -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
+      0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
+      -0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
+      0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
+      -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
+
+      //Front face
+      -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
+      0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
+      0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
+      0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
+      -0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
+      -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
+
+      //Left face
+      -0.5f, 0.5f, 0.5f, -1.0f, 0.0f, 0.0f,
+      -0.5f, 0.5f, -0.5f, -1.0f, 0.0f, 0.0f,
+      -0.5f, -0.5f, -0.5f, -1.0f, 0.0f, 0.0f,
+      -0.5f, -0.5f, -0.5f, -1.0f, 0.0f, 0.0f,
+      -0.5f, -0.5f, 0.5f, -1.0f, 0.0f, 0.0f,
+      -0.5f, 0.5f, 0.5f, -1.0f, 0.0f, 0.0f,
+
+      //Right face
+      0.5f, 0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
+      0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f,
+      0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
+      0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f,
+      0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
+      0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f,
+
+      //Bottom face
+      -0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f,
+      0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f,
+      0.5f, -0.5f, 0.5f, 0.0f, -1.0f, 0.0f,
+      0.5f, -0.5f, 0.5f, 0.0f, -1.0f, 0.0f,
+      -0.5f, -0.5f, 0.5f, 0.0f, -1.0f, 0.0f,
+      -0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f,
+
+      //Top face
+      0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+      -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+      0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f,
+      -0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f,
+      0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f,
+      -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f
   };
 
   float skyboxVertices[] = {
       // positions
-      -1.0f,  1.0f, -1.0f,
+      -1.0f, 1.0f, -1.0f,
       -1.0f, -1.0f, -1.0f,
       1.0f, -1.0f, -1.0f,
       1.0f, -1.0f, -1.0f,
-      1.0f,  1.0f, -1.0f,
-      -1.0f,  1.0f, -1.0f,
+      1.0f, 1.0f, -1.0f,
+      -1.0f, 1.0f, -1.0f,
 
-      -1.0f, -1.0f,  1.0f,
+      -1.0f, -1.0f, 1.0f,
       -1.0f, -1.0f, -1.0f,
-      -1.0f,  1.0f, -1.0f,
-      -1.0f,  1.0f, -1.0f,
-      -1.0f,  1.0f,  1.0f,
-      -1.0f, -1.0f,  1.0f,
+      -1.0f, 1.0f, -1.0f,
+      -1.0f, 1.0f, -1.0f,
+      -1.0f, 1.0f, 1.0f,
+      -1.0f, -1.0f, 1.0f,
 
       1.0f, -1.0f, -1.0f,
-      1.0f, -1.0f,  1.0f,
-      1.0f,  1.0f,  1.0f,
-      1.0f,  1.0f,  1.0f,
-      1.0f,  1.0f, -1.0f,
+      1.0f, -1.0f, 1.0f,
+      1.0f, 1.0f, 1.0f,
+      1.0f, 1.0f, 1.0f,
+      1.0f, 1.0f, -1.0f,
       1.0f, -1.0f, -1.0f,
 
-      -1.0f, -1.0f,  1.0f,
-      -1.0f,  1.0f,  1.0f,
-      1.0f,  1.0f,  1.0f,
-      1.0f,  1.0f,  1.0f,
-      1.0f, -1.0f,  1.0f,
-      -1.0f, -1.0f,  1.0f,
+      -1.0f, -1.0f, 1.0f,
+      -1.0f, 1.0f, 1.0f,
+      1.0f, 1.0f, 1.0f,
+      1.0f, 1.0f, 1.0f,
+      1.0f, -1.0f, 1.0f,
+      -1.0f, -1.0f, 1.0f,
 
-      -1.0f,  1.0f, -1.0f,
-      1.0f,  1.0f, -1.0f,
-      1.0f,  1.0f,  1.0f,
-      1.0f,  1.0f,  1.0f,
-      -1.0f,  1.0f,  1.0f,
-      -1.0f,  1.0f, -1.0f,
+      -1.0f, 1.0f, -1.0f,
+      1.0f, 1.0f, -1.0f,
+      1.0f, 1.0f, 1.0f,
+      1.0f, 1.0f, 1.0f,
+      -1.0f, 1.0f, 1.0f,
+      -1.0f, 1.0f, -1.0f,
 
       -1.0f, -1.0f, -1.0f,
-      -1.0f, -1.0f,  1.0f,
+      -1.0f, -1.0f, 1.0f,
       1.0f, -1.0f, -1.0f,
       1.0f, -1.0f, -1.0f,
-      -1.0f, -1.0f,  1.0f,
-      1.0f, -1.0f,  1.0f
+      -1.0f, -1.0f, 1.0f,
+      1.0f, -1.0f, 1.0f
+  };
+
+  float rectangleVertices[] = {
+      // Positions    // Texture Coords
+      -1.0f,  1.0f, 0.0f, 1.0f,
+      -1.0f, -1.0f, 0.0f, 0.0f,
+      1.0f, -1.0f, 1.0f, 0.0f,
+
+      -1.0f,  1.0f, 0.0f, 1.0f,
+      1.0f, -1.0f, 1.0f, 0.0f,
+      1.0f,  1.0f, 1.0f, 1.0f
   };
 
   //Load images
@@ -184,15 +229,20 @@ void HelloTriangle::Begin() {
   glBindTexture(GL_TEXTURE_CUBE_MAP, map_textureID);
 
   int map_Width, map_Height, map_NrChannels;
-  for(unsigned int i = 0; i < faces.size(); i++)
-  {
+  for (unsigned int i = 0; i < faces.size(); i++) {
     unsigned char *map_data = stbi_load(faces[i].c_str(), &map_Width, &map_Height, &map_NrChannels, 0);
-    if (map_data){
-      glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB, map_Width, map_Height, 0, GL_RGB, GL_UNSIGNED_BYTE, map_data);
+    if (map_data) {
+      glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
+                   0,
+                   GL_RGB,
+                   map_Width,
+                   map_Height,
+                   0,
+                   GL_RGB,
+                   GL_UNSIGNED_BYTE,
+                   map_data);
       stbi_image_free(map_data);
-    }
-    else
-    {
+    } else {
       std::cout << "Cubemap tex failed to load at path: " << faces[i] << std::endl;
       stbi_image_free(map_data);
     }
@@ -215,9 +265,9 @@ void HelloTriangle::Begin() {
   glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
   glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), &cubeVertices, GL_STATIC_DRAW);
   glEnableVertexAttribArray(0);
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *) 0);
   glEnableVertexAttribArray(1);
-  glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *) (3 * sizeof(float)));
 
   // skybox VAO
   glGenVertexArrays(1, &skyboxVAO);
@@ -226,19 +276,34 @@ void HelloTriangle::Begin() {
   glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
   glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
   glEnableVertexAttribArray(0);
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *) 0);
+
+  // framebuffer VAO
+  glGenVertexArrays(1, &framebufferVAO);
+  glGenBuffers(1, &framebufferVBO);
+  glBindVertexArray(framebufferVAO);
+  glBindBuffer(GL_ARRAY_BUFFER, framebufferVBO);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(rectangleVertices), &rectangleVertices, GL_STATIC_DRAW);
+  glEnableVertexAttribArray(0);
+  glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void *) 0);
+  glEnableVertexAttribArray(1);
+  glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void *) (2 * sizeof(float)));
 
   program_.Use();
-  program_.SetInt("texture1", 0);
+  program_.SetInt("skybox", 0);
 
   cubemap_shader.Use();
   cubemap_shader.SetInt("skybox", 0);
+
+  framebuffer_shader.Use();
+  framebuffer_shader.SetInt("framebuffer", 0);
 }
 
 void HelloTriangle::End() {
   //Unload program/pipeline
   program_.Delete();
   cubemap_shader.Delete();
+  framebuffer_shader.Delete();
 
   glDeleteShader(vertexShader_);
   glDeleteShader(fragmentShader_);
@@ -251,8 +316,17 @@ void HelloTriangle::Update(float dt) {
   UpdateCamera(dt);
   elapsed_time_ += dt;
 
+
+  // std::cout << "First Pass" << "\r";
   glEnable(GL_DEPTH_TEST);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+  glBindFramebuffer(GL_FRAMEBUFFER, FBO);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+  glEnable(GL_CULL_FACE);
+
+// Set uniforms, bind VAO, etc.
 
   // 3D rotations
   program_.Use();
@@ -266,13 +340,16 @@ void HelloTriangle::Update(float dt) {
   program_.SetMat4("model", model);
   program_.SetMat4("view", view);
   program_.SetMat4("projection", projection);
+  program_.SetVec3("cameraPos", camera_.Position);
 
   //For Cubes
   glBindVertexArray(cubeVAO);
   glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D, cube_texture_);
+  glBindTexture(GL_TEXTURE_CUBE_MAP, map_textureID);
   glDrawArrays(GL_TRIANGLES, 0, 36);
   glBindVertexArray(0);
+
+  //For framebuffer
 
   //For Skybox
   glDepthFunc(GL_LEQUAL);
@@ -281,12 +358,27 @@ void HelloTriangle::Update(float dt) {
   cubemap_shader.SetMat4("view", view);
   cubemap_shader.SetMat4("projection", projection);
 
+  //Probably the full render, I sure hope so
   glBindVertexArray(skyboxVAO);
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_CUBE_MAP, map_textureID);
   glDrawArrays(GL_TRIANGLES, 0, 36);
   glBindVertexArray(0);
   glDepthFunc(GL_LESS);
+
+  glDisable(GL_CULL_FACE);
+
+  //Second pass
+  // std::cout << "Second Pass" << "\r";
+  glBindFramebuffer(GL_FRAMEBUFFER, 0);
+  glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+  framebuffer_shader.Use();
+
+  glBindVertexArray(framebufferVAO);
+  glDisable(GL_DEPTH_TEST);
+  glBindTexture(GL_TEXTURE_2D, texture_color_buffer);
+  glDrawArrays(GL_TRIANGLES, 0, 6);
+
 }
 
 void HelloTriangle::UpdateCamera(float dt) {

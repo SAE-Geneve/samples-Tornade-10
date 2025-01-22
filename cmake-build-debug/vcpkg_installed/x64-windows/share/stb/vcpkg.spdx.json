@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/stb-x64-windows-2024-07-29#1-cc9a4385-fdd6-40cb-be4d-e972458f0895",
-  "name": "stb:x64-windows@2024-07-29#1 4f799aa6b2d9bd6b42614e4888905e2e30e0ad7a7722fa566a404c6e1e3d7f2c",
+  "documentNamespace": "https://spdx.org/spdxdocs/stb-x64-windows-2024-07-29#1-ccb90288-6a7f-4879-9fc3-a008e3b7a059",
+  "name": "stb:x64-windows@2024-07-29#1 f3020412b6d48005df8fc84f58c478bec5b66291a004707d9a65de499bde900c",
   "creationInfo": {
     "creators": [
-      "Tool: vcpkg-2024-11-12-eb492805e92a2c14a230f5c3deb3e89f6771c321"
+      "Tool: vcpkg-2025-01-11-0f310537c75015100d200eb71b137f6376aad510"
     ],
-    "created": "2024-11-20T14:32:58Z"
+    "created": "2025-01-16T15:13:38Z"
   },
   "relationships": [
     {
@@ -89,7 +89,7 @@
     {
       "name": "stb:x64-windows",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "4f799aa6b2d9bd6b42614e4888905e2e30e0ad7a7722fa566a404c6e1e3d7f2c",
+      "versionInfo": "f3020412b6d48005df8fc84f58c478bec5b66291a004707d9a65de499bde900c",
       "downloadLocation": "NONE",
       "licenseConcluded": "MIT OR CC-PDDC",
       "licenseDeclared": "NOASSERTION",
@@ -97,7 +97,7 @@
       "comment": "This is a binary package built by vcpkg."
     },
     {
-      "SPDXID": "SPDXRef-resource-1",
+      "SPDXID": "SPDXRef-resource-0",
       "name": "nothings/stb",
       "downloadLocation": "git+https://github.com/nothings/stb@f75e8d1cad7d90d72ef7a4661f1b994ef78b4e31",
       "licenseConcluded": "NOASSERTION",

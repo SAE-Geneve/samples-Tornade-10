@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/sdl2-x64-windows-2.30.9-93deb031-29fc-40a1-996c-2b9e639b82b5",
-  "name": "sdl2:x64-windows@2.30.9 38ed46e85d00352ad0ed927783c9ede73c9a28de8155164e0898c12a93e72284",
+  "documentNamespace": "https://spdx.org/spdxdocs/sdl2-x64-windows-2.30.11-e3dfde79-bdee-413a-8c69-0c7459fa267e",
+  "name": "sdl2:x64-windows@2.30.11 859a22e12d2e59dbecd3e39f1adf31334e42ae4fd5ce7530811b346310a42731",
   "creationInfo": {
     "creators": [
-      "Tool: vcpkg-2024-11-12-eb492805e92a2c14a230f5c3deb3e89f6771c321"
+      "Tool: vcpkg-2025-01-11-0f310537c75015100d200eb71b137f6376aad510"
     ],
-    "created": "2024-11-20T14:32:41Z"
+    "created": "2025-01-16T15:13:20Z"
   },
   "relationships": [
     {
@@ -87,7 +87,7 @@
     {
       "name": "sdl2",
       "SPDXID": "SPDXRef-port",
-      "versionInfo": "2.30.9",
+      "versionInfo": "2.30.11",
       "downloadLocation": "NOASSERTION",
       "homepage": "https://www.libsdl.org/download-2.0.php",
       "licenseConcluded": "Zlib",
@@ -99,7 +99,7 @@
     {
       "name": "sdl2:x64-windows",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "38ed46e85d00352ad0ed927783c9ede73c9a28de8155164e0898c12a93e72284",
+      "versionInfo": "859a22e12d2e59dbecd3e39f1adf31334e42ae4fd5ce7530811b346310a42731",
       "downloadLocation": "NONE",
       "licenseConcluded": "Zlib",
       "licenseDeclared": "NOASSERTION",
@@ -107,16 +107,16 @@
       "comment": "This is a binary package built by vcpkg."
     },
     {
-      "SPDXID": "SPDXRef-resource-1",
+      "SPDXID": "SPDXRef-resource-0",
       "name": "libsdl-org/SDL",
-      "downloadLocation": "git+https://github.com/libsdl-org/SDL@release-2.30.9",
+      "downloadLocation": "git+https://github.com/libsdl-org/SDL@release-2.30.11",
       "licenseConcluded": "NOASSERTION",
       "licenseDeclared": "NOASSERTION",
       "copyrightText": "NOASSERTION",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "b681e8e58bb696090d58514df67736ba5b78dc4ed93ab7b2d074aba8a3ea6a6404c5871c3306cfd0b7370d658b1eb7fef1827035b6b2bd931c7c8c631625b110"
+          "checksumValue": "91fd9fddf8b15d82de1674c734698b20ad2c08cebb3d4d18062dcc1c250864ae8bfa03fb570ca31742d5f0ada49d5fccc9019640bcec5fa99492bed8dcb151a6"
         }
       ]
     }
@@ -164,7 +164,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "c1296da7aca61d23f4370fb111e9d881600cf27f9bda3027587ea5877902797a"
+          "checksumValue": "2153f29da9a1c93716e391e1614d443e002ed43b09c0ee80d5dad9652730edf6"
         }
       ],
       "licenseConcluded": "NOASSERTION",
@@ -188,7 +188,7 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "3d25402db1eb7a03c46276bf4abe97ec942d144774213c24926ab0d1fa818ce9"
+          "checksumValue": "05a30c11876144256f65b61bffa0e29f5be6b18972ce5031d46e58a5b9bb6c44"
         }
       ],
       "licenseConcluded": "NOASSERTION",
