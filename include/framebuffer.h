@@ -42,7 +42,7 @@ class Framebuffer{
   };
 
   void FirstPass(){
-    std::cout << "First Pass" << "\r";
+    // std::cout << "First Pass" << "\n";
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glBindFramebuffer(GL_FRAMEBUFFER, FBO_);
@@ -52,7 +52,7 @@ class Framebuffer{
   };
 
   void SecondPass(Shader& framebuffer_shader_, VAO vao){
-    std::cout << "Second Pass" << "\r";
+    // std::cout << "Second Pass" << "\n";
 
     glDisable(GL_CULL_FACE);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);

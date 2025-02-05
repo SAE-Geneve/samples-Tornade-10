@@ -3,8 +3,33 @@
 waiting to take filesystem lock on C:\Dev\vcpkg\.vcpkg-root...
 Detecting compiler hash for triplet x64-windows...
 Compiler found: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.38.33130/bin/Hostx64/x64/cl.exe
-All requested packages are currently installed.
-Total install time: 616 us
+The following packages will be built and installed:
+    assimp:x64-windows@5.4.3
+  * draco:x64-windows@1.5.7
+Additional packages (*) will be modified to complete this operation.
+Restored 2 package(s) from C:\Users\maxen\AppData\Local\vcpkg\archives in 1.6 s. Use --debug to see more details.
+Installing 1/2 draco:x64-windows@1.5.7...
+Elapsed time to handle draco:x64-windows: 58 ms
+draco:x64-windows package ABI: bbd97a506c1befea898a597162ce39f12f048f0ac65c3c5e3fde664850061704
+Installing 2/2 assimp:x64-windows@5.4.3...
+Elapsed time to handle assimp:x64-windows: 25.5 ms
+assimp:x64-windows package ABI: 8f78bcd4f77c89ee980c1c954702b470adf540e9218bd75b6acff5790599c18e
+Total install time: 86.3 ms
+The package stb provides CMake targets:
+
+    find_package(Stb REQUIRED)
+    target_include_directories(main PRIVATE ${Stb_INCLUDE_DIR})
+assimp provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(assimp CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE assimp::assimp)
+
+assimp provides pkg-config modules:
+
+  # Import various well-known 3D model formats in an uniform manner.
+  assimp
+
 The package glew is compatible with built-in CMake targets:
 
     find_package(GLEW REQUIRED)
@@ -34,11 +59,7 @@ imgui provides CMake targets:
   find_package(imgui CONFIG REQUIRED)
   target_link_libraries(main PRIVATE imgui::imgui)
 
-The package stb provides CMake targets:
-
-    find_package(Stb REQUIRED)
-    target_include_directories(main PRIVATE ${Stb_INCLUDE_DIR})
 -- Running vcpkg install - done
--- Configuring done (9.2s)
+-- Configuring done (230.0s)
 -- Generating done (0.0s)
 -- Build files have been written to: C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-relwithdebinfo

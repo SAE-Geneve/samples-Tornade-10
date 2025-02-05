@@ -10,6 +10,7 @@ find_package(glm CONFIG REQUIRED)
 find_package(SDL2 CONFIG REQUIRED)
 find_package(imgui CONFIG REQUIRED)
 find_package(Stb REQUIRED)
+find_package(assimp CONFIG REQUIRED)
 
 
 file(GLOB_RECURSE SHADER_FILES
@@ -53,10 +54,18 @@ file(GLOB_RECURSE DATA_FILES
             "data/*.json"
             "data/*.png"
             "data/*.jpg"
+            "data/*.jpeg"
             "data/*.bmp"
+            "data/*.dae"
+            "data/*.dds"
             "data/*.hdr"
             "data/*.obj"
+            "data/*.fbx"
             "data/*.mtl"
+            "data/*.tif"
+            "data/*.gltf"
+            "data/*.bin"
+            "data/*.blend"
             )
     foreach(DATA ${DATA_FILES})
         get_filename_component(FILE_NAME ${DATA} NAME)
@@ -92,7 +101,7 @@ add_dependencies(Common shader_target data_target)
 
 if(MSVC)
     target_compile_definitions(Common PUBLIC "_USE_MATH_DEFINES" WIN32_LEAN_AND_MEAN)
-    target_compile_options(Common PUBLIC /arch:AVX2 /Oi /GL /fp:fast)
+    target_compile_options(Common PUBLIC /arch:AVX2 /Oi /GL /fp:fast /V3 /VX)
     target_link_options(Common PUBLIC /LTCG)
 else()
 
@@ -104,12 +113,12 @@ foreach(MAIN_FILE ${MAIN_FILES})
     
     add_executable(${MAIN_NAME} ${MAIN_FILE}
             include/light.h
-            include/light.h
             include/shader.h
-            include/framebuffer.h
             include/framebuffer.h
             include/vao.h
             include/vbo.h
+            include/mesh.h
+            include/model.h
     )
     target_link_libraries(${MAIN_NAME} PUBLIC Common) 
 endforeach()

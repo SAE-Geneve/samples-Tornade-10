@@ -1,7 +1,69 @@
+waiting to take filesystem lock on C:\Dev\vcpkg\.vcpkg-root...
 Detecting compiler hash for triplet x64-windows...
 Compiler found: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.38.33130/bin/Hostx64/x64/cl.exe
-All requested packages are currently installed.
-Total install time: 600 us
+The following packages will be built and installed:
+    assimp:x64-windows@5.4.3
+  * draco:x64-windows@1.5.7
+  * jhasse-poly2tri:x64-windows@2023-12-27
+  * kubazip:x64-windows@0.3.3
+  * minizip:x64-windows@1.3.1#1
+  * polyclipping:x64-windows@6.4.2#12
+  * pugixml:x64-windows@1.15
+  * rapidjson:x64-windows@2023-07-17#1
+  * utfcpp:x64-windows@4.0.6
+  * vcpkg-cmake-get-vars:x64-windows@2024-09-22
+  * zlib:x64-windows@1.3.1
+Additional packages (*) will be modified to complete this operation.
+Restored 11 package(s) from C:\Users\maxen\AppData\Local\vcpkg\archives in 2.3 s. Use --debug to see more details.
+Installing 1/11 zlib:x64-windows@1.3.1...
+Elapsed time to handle zlib:x64-windows: 14.6 ms
+zlib:x64-windows package ABI: b63484d2a071f5c9e9465799fe2cffc54565d64f1242de061f48a1210177f352
+Installing 2/11 utfcpp:x64-windows@4.0.6...
+Elapsed time to handle utfcpp:x64-windows: 8.45 ms
+utfcpp:x64-windows package ABI: 228099b9ce13441c1a1fb61c09af9bb0e4b7552d32942e44f5c05cf77cf192eb
+Installing 3/11 rapidjson:x64-windows@2023-07-17#1...
+Elapsed time to handle rapidjson:x64-windows: 22.1 ms
+rapidjson:x64-windows package ABI: 64869a0387fa37ab1d6b1c00ae7e474696f5182b16ce22a9790c9b16cb5ae31c
+Installing 4/11 pugixml:x64-windows@1.15...
+Elapsed time to handle pugixml:x64-windows: 13 ms
+pugixml:x64-windows package ABI: 01d6dd5a73edf43fcb4075a0214cdd80b2d7ee6a198596fef8bb904d0cad452e
+Installing 5/11 polyclipping:x64-windows@6.4.2#12...
+Elapsed time to handle polyclipping:x64-windows: 9.07 ms
+polyclipping:x64-windows package ABI: 4da4b23bf5478bc53901f66a3dd7d68069bded8c8f932e98ea863c08aa18cc7a
+Installing 6/11 vcpkg-cmake-get-vars:x64-windows@2024-09-22...
+Elapsed time to handle vcpkg-cmake-get-vars:x64-windows: 5.86 ms
+vcpkg-cmake-get-vars:x64-windows package ABI: e0586c194e53ea270874fc656a57d275fa365bc47c444837e4db1766d267d431
+Installing 7/11 minizip:x64-windows@1.3.1#1...
+Elapsed time to handle minizip:x64-windows: 13.3 ms
+minizip:x64-windows package ABI: 57c01caeb27bb9a01d0d5fb63f121b0b94c7f9fe61193bb05fee57b76a602d33
+Installing 8/11 kubazip:x64-windows@0.3.3...
+Elapsed time to handle kubazip:x64-windows: 8.33 ms
+kubazip:x64-windows package ABI: da827189fb135174efacdc17b426b0655e7fab3f3d11a7d36b8b27f1088a46cf
+Installing 9/11 jhasse-poly2tri:x64-windows@2023-12-27...
+Elapsed time to handle jhasse-poly2tri:x64-windows: 10.5 ms
+jhasse-poly2tri:x64-windows package ABI: 56958740eac34a87fb053c2e5998c7959d5a399b5a08582eff29d89ec95c683a
+Installing 10/11 draco:x64-windows@1.5.7...
+Elapsed time to handle draco:x64-windows: 53.2 ms
+draco:x64-windows package ABI: bbd97a506c1befea898a597162ce39f12f048f0ac65c3c5e3fde664850061704
+Installing 11/11 assimp:x64-windows@5.4.3...
+Elapsed time to handle assimp:x64-windows: 26.1 ms
+assimp:x64-windows package ABI: 8f78bcd4f77c89ee980c1c954702b470adf540e9218bd75b6acff5790599c18e
+Total install time: 191 ms
+The package stb provides CMake targets:
+
+    find_package(Stb REQUIRED)
+    target_include_directories(main PRIVATE ${Stb_INCLUDE_DIR})
+assimp provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(assimp CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE assimp::assimp)
+
+assimp provides pkg-config modules:
+
+  # Import various well-known 3D model formats in an uniform manner.
+  assimp
+
 The package glew is compatible with built-in CMake targets:
 
     find_package(GLEW REQUIRED)
@@ -31,7 +93,3 @@ imgui provides CMake targets:
   find_package(imgui CONFIG REQUIRED)
   target_link_libraries(main PRIVATE imgui::imgui)
 
-The package stb provides CMake targets:
-
-    find_package(Stb REQUIRED)
-    target_include_directories(main PRIVATE ${Stb_INCLUDE_DIR})
