@@ -44,13 +44,13 @@ cmake_ninja_workdir = C$:\Users\maxen\source\repos\samples-Tornade-10\cmake-buil
 #############################################
 # Utility command for shader_target
 
-build shader_target: phony CMakeFiles\shader_target data\shaders\hello_cube_map\skybox.frag data\shaders\hello_cube_map\skybox.vert data\shaders\hello_triangle\cube.frag data\shaders\hello_triangle\cube.vert data\shaders\hello_triangle\framebuffer.frag data\shaders\hello_triangle\framebuffer.vert data\shaders\hello_triangle\materials.frag data\shaders\hello_triangle\materials.vert data\shaders\hello_triangle\reflectivecube.frag data\shaders\hello_triangle\reflectivecube.vert
+build shader_target: phony CMakeFiles\shader_target data\shaders\hello_cube_map\skybox.frag data\shaders\hello_cube_map\skybox.vert data\shaders\hello_triangle\cube.frag data\shaders\hello_triangle\cube.vert data\shaders\hello_triangle\framebuffer.frag data\shaders\hello_triangle\framebuffer.vert data\shaders\hello_triangle\materials.frag data\shaders\hello_triangle\materials.vert data\shaders\hello_triangle\model.frag data\shaders\hello_triangle\model.vert data\shaders\hello_triangle\reflectivecube.frag data\shaders\hello_triangle\reflectivecube.vert
 
 
 #############################################
 # Utility command for data_target
 
-build data_target: phony CMakeFiles\data_target data\shaders\hello_cube_map\skybox\back.jpg data\shaders\hello_cube_map\skybox\bottom.jpg data\shaders\hello_cube_map\skybox\front.jpg data\shaders\hello_cube_map\skybox\left.jpg data\shaders\hello_cube_map\skybox\right.jpg data\shaders\hello_cube_map\skybox\top.jpg data\textures\container.jpg
+build data_target: phony CMakeFiles\data_target data\models\ImageToStl.com_starpiece.obj data\models\backpack\ao.jpg data\models\backpack\backpack.mtl data\models\backpack\backpack.obj data\models\backpack\diffuse.jpg data\models\backpack\normal.png data\models\backpack\roughness.jpg data\models\backpack\specular.jpg data\shaders\hello_cube_map\skybox\back.jpg data\shaders\hello_cube_map\skybox\bottom.jpg data\shaders\hello_cube_map\skybox\front.jpg data\shaders\hello_cube_map\skybox\left.jpg data\shaders\hello_cube_map\skybox\right.jpg data\shaders\hello_cube_map\skybox\top.jpg data\textures\container.jpg
 
 # =============================================================================
 # Object build statements for STATIC_LIBRARY target Common
@@ -114,10 +114,10 @@ build CMakeFiles\hello_quad.dir\main\hello_quad.cpp.obj: CXX_COMPILER__hello_qua
 #############################################
 # Link the executable hello_quad.exe
 
-build hello_quad.exe: CXX_EXECUTABLE_LINKER__hello_quad_Debug CMakeFiles\hello_quad.dir\main\hello_quad.cpp.obj | Common.lib vcpkg_installed\x64-windows\debug\lib\glew32d.lib vcpkg_installed\x64-windows\debug\lib\glm.lib vcpkg_installed\x64-windows\debug\lib\manual-link\SDL2maind.lib vcpkg_installed\x64-windows\debug\lib\imguid.lib vcpkg_installed\x64-windows\debug\lib\SDL2d.lib || Common.lib
+build hello_quad.exe: CXX_EXECUTABLE_LINKER__hello_quad_Debug CMakeFiles\hello_quad.dir\main\hello_quad.cpp.obj | Common.lib vcpkg_installed\x64-windows\debug\lib\glew32d.lib vcpkg_installed\x64-windows\debug\lib\glm.lib vcpkg_installed\x64-windows\debug\lib\manual-link\SDL2maind.lib vcpkg_installed\x64-windows\debug\lib\imguid.lib vcpkg_installed\x64-windows\debug\lib\SDL2d.lib vcpkg_installed\x64-windows\debug\lib\assimp-vc143-mtd.lib || Common.lib
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console  /LTCG
-  LINK_LIBRARIES = Common.lib  vcpkg_installed\x64-windows\debug\lib\glew32d.lib  opengl32.lib  glu32.lib  vcpkg_installed\x64-windows\debug\lib\glm.lib  vcpkg_installed\x64-windows\debug\lib\manual-link\SDL2maind.lib  shell32.lib  vcpkg_installed\x64-windows\debug\lib\imguid.lib  vcpkg_installed\x64-windows\debug\lib\SDL2d.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_LIBRARIES = Common.lib  vcpkg_installed\x64-windows\debug\lib\glew32d.lib  opengl32.lib  glu32.lib  vcpkg_installed\x64-windows\debug\lib\glm.lib  vcpkg_installed\x64-windows\debug\lib\manual-link\SDL2maind.lib  shell32.lib  vcpkg_installed\x64-windows\debug\lib\imguid.lib  vcpkg_installed\x64-windows\debug\lib\SDL2d.lib  vcpkg_installed\x64-windows\debug\lib\assimp-vc143-mtd.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = CMakeFiles\hello_quad.dir
   POST_BUILD = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\maxen\source\repos\samples-Tornade-10\cmake-build-debug && C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Dev/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-debug/hello_quad.exe -installedDir C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-debug/vcpkg_installed/x64-windows/debug/bin -OutVariable out"
   PRE_LINK = cd .
@@ -152,10 +152,10 @@ build CMakeFiles\hello_triangle.dir\main\hello_triangle.cpp.obj: CXX_COMPILER__h
 #############################################
 # Link the executable hello_triangle.exe
 
-build hello_triangle.exe: CXX_EXECUTABLE_LINKER__hello_triangle_Debug CMakeFiles\hello_triangle.dir\main\hello_triangle.cpp.obj | Common.lib vcpkg_installed\x64-windows\debug\lib\glew32d.lib vcpkg_installed\x64-windows\debug\lib\glm.lib vcpkg_installed\x64-windows\debug\lib\manual-link\SDL2maind.lib vcpkg_installed\x64-windows\debug\lib\imguid.lib vcpkg_installed\x64-windows\debug\lib\SDL2d.lib || Common.lib
+build hello_triangle.exe: CXX_EXECUTABLE_LINKER__hello_triangle_Debug CMakeFiles\hello_triangle.dir\main\hello_triangle.cpp.obj | Common.lib vcpkg_installed\x64-windows\debug\lib\glew32d.lib vcpkg_installed\x64-windows\debug\lib\glm.lib vcpkg_installed\x64-windows\debug\lib\manual-link\SDL2maind.lib vcpkg_installed\x64-windows\debug\lib\imguid.lib vcpkg_installed\x64-windows\debug\lib\SDL2d.lib vcpkg_installed\x64-windows\debug\lib\assimp-vc143-mtd.lib || Common.lib
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console  /LTCG
-  LINK_LIBRARIES = Common.lib  vcpkg_installed\x64-windows\debug\lib\glew32d.lib  opengl32.lib  glu32.lib  vcpkg_installed\x64-windows\debug\lib\glm.lib  vcpkg_installed\x64-windows\debug\lib\manual-link\SDL2maind.lib  shell32.lib  vcpkg_installed\x64-windows\debug\lib\imguid.lib  vcpkg_installed\x64-windows\debug\lib\SDL2d.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_LIBRARIES = Common.lib  vcpkg_installed\x64-windows\debug\lib\glew32d.lib  opengl32.lib  glu32.lib  vcpkg_installed\x64-windows\debug\lib\glm.lib  vcpkg_installed\x64-windows\debug\lib\manual-link\SDL2maind.lib  shell32.lib  vcpkg_installed\x64-windows\debug\lib\imguid.lib  vcpkg_installed\x64-windows\debug\lib\SDL2d.lib  vcpkg_installed\x64-windows\debug\lib\assimp-vc143-mtd.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = CMakeFiles\hello_triangle.dir
   POST_BUILD = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\maxen\source\repos\samples-Tornade-10\cmake-build-debug && C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Dev/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-debug/hello_triangle.exe -installedDir C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-debug/vcpkg_installed/x64-windows/debug/bin -OutVariable out"
   PRE_LINK = cd .
@@ -191,7 +191,7 @@ build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 #############################################
 # Phony custom command for CMakeFiles\shader_target
 
-build CMakeFiles\shader_target | ${cmake_ninja_workdir}CMakeFiles\shader_target: phony data\shaders\hello_cube_map\skybox.frag data\shaders\hello_cube_map\skybox.vert data\shaders\hello_triangle\cube.frag data\shaders\hello_triangle\cube.vert data\shaders\hello_triangle\framebuffer.frag data\shaders\hello_triangle\framebuffer.vert data\shaders\hello_triangle\materials.frag data\shaders\hello_triangle\materials.vert data\shaders\hello_triangle\reflectivecube.frag data\shaders\hello_triangle\reflectivecube.vert
+build CMakeFiles\shader_target | ${cmake_ninja_workdir}CMakeFiles\shader_target: phony data\shaders\hello_cube_map\skybox.frag data\shaders\hello_cube_map\skybox.vert data\shaders\hello_triangle\cube.frag data\shaders\hello_triangle\cube.vert data\shaders\hello_triangle\framebuffer.frag data\shaders\hello_triangle\framebuffer.vert data\shaders\hello_triangle\materials.frag data\shaders\hello_triangle\materials.vert data\shaders\hello_triangle\model.frag data\shaders\hello_triangle\model.vert data\shaders\hello_triangle\reflectivecube.frag data\shaders\hello_triangle\reflectivecube.vert
 
 
 #############################################
@@ -267,6 +267,24 @@ build data\shaders\hello_triangle\materials.vert | ${cmake_ninja_workdir}data\sh
 
 
 #############################################
+# Custom command for data\shaders\hello_triangle\model.frag
+
+build data\shaders\hello_triangle\model.frag | ${cmake_ninja_workdir}data\shaders\hello_triangle\model.frag: CUSTOM_COMMAND C$:\Users\maxen\source\repos\samples-Tornade-10\data\shaders\hello_triangle\model.frag
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\maxen\source\repos\samples-Tornade-10\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -E copy C:/Users/maxen/source/repos/samples-Tornade-10/data/shaders/hello_triangle/model.frag C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-debug/data/shaders/hello_triangle/model.frag && C:\VulkanSDK\1.3.296.0\Bin\glslangValidator.exe C:/Users/maxen/source/repos/samples-Tornade-10/data/shaders/hello_triangle/model.frag"
+  DESC = Generating data/shaders/hello_triangle/model.frag
+  restat = 1
+
+
+#############################################
+# Custom command for data\shaders\hello_triangle\model.vert
+
+build data\shaders\hello_triangle\model.vert | ${cmake_ninja_workdir}data\shaders\hello_triangle\model.vert: CUSTOM_COMMAND C$:\Users\maxen\source\repos\samples-Tornade-10\data\shaders\hello_triangle\model.vert
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\maxen\source\repos\samples-Tornade-10\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -E copy C:/Users/maxen/source/repos/samples-Tornade-10/data/shaders/hello_triangle/model.vert C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-debug/data/shaders/hello_triangle/model.vert && C:\VulkanSDK\1.3.296.0\Bin\glslangValidator.exe C:/Users/maxen/source/repos/samples-Tornade-10/data/shaders/hello_triangle/model.vert"
+  DESC = Generating data/shaders/hello_triangle/model.vert
+  restat = 1
+
+
+#############################################
 # Custom command for data\shaders\hello_triangle\reflectivecube.frag
 
 build data\shaders\hello_triangle\reflectivecube.frag | ${cmake_ninja_workdir}data\shaders\hello_triangle\reflectivecube.frag: CUSTOM_COMMAND C$:\Users\maxen\source\repos\samples-Tornade-10\data\shaders\hello_triangle\reflectivecube.frag
@@ -287,7 +305,79 @@ build data\shaders\hello_triangle\reflectivecube.vert | ${cmake_ninja_workdir}da
 #############################################
 # Phony custom command for CMakeFiles\data_target
 
-build CMakeFiles\data_target | ${cmake_ninja_workdir}CMakeFiles\data_target: phony data\shaders\hello_cube_map\skybox\back.jpg data\shaders\hello_cube_map\skybox\bottom.jpg data\shaders\hello_cube_map\skybox\front.jpg data\shaders\hello_cube_map\skybox\left.jpg data\shaders\hello_cube_map\skybox\right.jpg data\shaders\hello_cube_map\skybox\top.jpg data\textures\container.jpg
+build CMakeFiles\data_target | ${cmake_ninja_workdir}CMakeFiles\data_target: phony data\models\ImageToStl.com_starpiece.obj data\models\backpack\ao.jpg data\models\backpack\backpack.mtl data\models\backpack\backpack.obj data\models\backpack\diffuse.jpg data\models\backpack\normal.png data\models\backpack\roughness.jpg data\models\backpack\specular.jpg data\shaders\hello_cube_map\skybox\back.jpg data\shaders\hello_cube_map\skybox\bottom.jpg data\shaders\hello_cube_map\skybox\front.jpg data\shaders\hello_cube_map\skybox\left.jpg data\shaders\hello_cube_map\skybox\right.jpg data\shaders\hello_cube_map\skybox\top.jpg data\textures\container.jpg
+
+
+#############################################
+# Custom command for data\models\ImageToStl.com_starpiece.obj
+
+build data\models\ImageToStl.com_starpiece.obj | ${cmake_ninja_workdir}data\models\ImageToStl.com_starpiece.obj: CUSTOM_COMMAND C$:\Users\maxen\source\repos\samples-Tornade-10\data\models\ImageToStl.com_starpiece.obj
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\maxen\source\repos\samples-Tornade-10\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -E copy C:/Users/maxen/source/repos/samples-Tornade-10/data/models/ImageToStl.com_starpiece.obj C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-debug/data/models/ImageToStl.com_starpiece.obj"
+  DESC = Generating data/models/ImageToStl.com_starpiece.obj
+  restat = 1
+
+
+#############################################
+# Custom command for data\models\backpack\ao.jpg
+
+build data\models\backpack\ao.jpg | ${cmake_ninja_workdir}data\models\backpack\ao.jpg: CUSTOM_COMMAND C$:\Users\maxen\source\repos\samples-Tornade-10\data\models\backpack\ao.jpg
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\maxen\source\repos\samples-Tornade-10\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -E copy C:/Users/maxen/source/repos/samples-Tornade-10/data/models/backpack/ao.jpg C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-debug/data/models/backpack/ao.jpg"
+  DESC = Generating data/models/backpack/ao.jpg
+  restat = 1
+
+
+#############################################
+# Custom command for data\models\backpack\backpack.mtl
+
+build data\models\backpack\backpack.mtl | ${cmake_ninja_workdir}data\models\backpack\backpack.mtl: CUSTOM_COMMAND C$:\Users\maxen\source\repos\samples-Tornade-10\data\models\backpack\backpack.mtl
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\maxen\source\repos\samples-Tornade-10\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -E copy C:/Users/maxen/source/repos/samples-Tornade-10/data/models/backpack/backpack.mtl C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-debug/data/models/backpack/backpack.mtl"
+  DESC = Generating data/models/backpack/backpack.mtl
+  restat = 1
+
+
+#############################################
+# Custom command for data\models\backpack\backpack.obj
+
+build data\models\backpack\backpack.obj | ${cmake_ninja_workdir}data\models\backpack\backpack.obj: CUSTOM_COMMAND C$:\Users\maxen\source\repos\samples-Tornade-10\data\models\backpack\backpack.obj
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\maxen\source\repos\samples-Tornade-10\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -E copy C:/Users/maxen/source/repos/samples-Tornade-10/data/models/backpack/backpack.obj C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-debug/data/models/backpack/backpack.obj"
+  DESC = Generating data/models/backpack/backpack.obj
+  restat = 1
+
+
+#############################################
+# Custom command for data\models\backpack\diffuse.jpg
+
+build data\models\backpack\diffuse.jpg | ${cmake_ninja_workdir}data\models\backpack\diffuse.jpg: CUSTOM_COMMAND C$:\Users\maxen\source\repos\samples-Tornade-10\data\models\backpack\diffuse.jpg
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\maxen\source\repos\samples-Tornade-10\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -E copy C:/Users/maxen/source/repos/samples-Tornade-10/data/models/backpack/diffuse.jpg C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-debug/data/models/backpack/diffuse.jpg"
+  DESC = Generating data/models/backpack/diffuse.jpg
+  restat = 1
+
+
+#############################################
+# Custom command for data\models\backpack\normal.png
+
+build data\models\backpack\normal.png | ${cmake_ninja_workdir}data\models\backpack\normal.png: CUSTOM_COMMAND C$:\Users\maxen\source\repos\samples-Tornade-10\data\models\backpack\normal.png
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\maxen\source\repos\samples-Tornade-10\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -E copy C:/Users/maxen/source/repos/samples-Tornade-10/data/models/backpack/normal.png C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-debug/data/models/backpack/normal.png"
+  DESC = Generating data/models/backpack/normal.png
+  restat = 1
+
+
+#############################################
+# Custom command for data\models\backpack\roughness.jpg
+
+build data\models\backpack\roughness.jpg | ${cmake_ninja_workdir}data\models\backpack\roughness.jpg: CUSTOM_COMMAND C$:\Users\maxen\source\repos\samples-Tornade-10\data\models\backpack\roughness.jpg
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\maxen\source\repos\samples-Tornade-10\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -E copy C:/Users/maxen/source/repos/samples-Tornade-10/data/models/backpack/roughness.jpg C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-debug/data/models/backpack/roughness.jpg"
+  DESC = Generating data/models/backpack/roughness.jpg
+  restat = 1
+
+
+#############################################
+# Custom command for data\models\backpack\specular.jpg
+
+build data\models\backpack\specular.jpg | ${cmake_ninja_workdir}data\models\backpack\specular.jpg: CUSTOM_COMMAND C$:\Users\maxen\source\repos\samples-Tornade-10\data\models\backpack\specular.jpg
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\maxen\source\repos\samples-Tornade-10\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -E copy C:/Users/maxen/source/repos/samples-Tornade-10/data/models/backpack/specular.jpg C:/Users/maxen/source/repos/samples-Tornade-10/cmake-build-debug/data/models/backpack/specular.jpg"
+  DESC = Generating data/models/backpack/specular.jpg
+  restat = 1
 
 
 #############################################

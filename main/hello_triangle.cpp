@@ -16,6 +16,7 @@
 #include "scene.h"
 #include "camera.h"
 #include "shader.h"
+#include "model.h"
 
 #include "vao.h"
 #include "vbo.h"
@@ -29,21 +30,25 @@ class HelloTriangle final : public Scene {
   void Update(float dt) override;
   void OnEvent(const SDL_Event &event) override;
   void UpdateCamera(const float dt) override;
-  
+
  private:
   float elapsed_time_ = 0;
-  
+
   Shader light_shader_ = {};
   Shader reflective_cube_shader_ = {};
   Shader cubemap_shader_ = {};
   Shader framebuffer_shader_ = {};
   Shader object_shader_ = {};
-  
+  Shader model_shader_ = {};
+
+  Model star_bit_;
+  Model back_pack_;
+
   GLuint map_textureID = 0;
 
   unsigned int cube_texture_;
 
-  glm::vec3 lightPos = glm::vec3(1.2f, 1.0f, 2.0f);
+  glm::vec3 lightPos = glm::vec3(1.0f, 1.0f, 2.0f);
   glm::vec3 lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
 
   Camera camera_;
@@ -54,7 +59,7 @@ class HelloTriangle final : public Scene {
   VBO cubeVBO, reflectiveCubeVBO, lightVBO, skyboxVBO, framebufferVBO;
 
   //  Cubemap faces
-  static constexpr std::array<std::string_view , 6> faces
+  static constexpr std::array<std::string_view, 6> faces
       {
           "data/shaders/hello_cube_map/skybox/right.jpg",
           "data/shaders/hello_cube_map/skybox/left.jpg",
@@ -71,11 +76,17 @@ void HelloTriangle::Begin() {
 
   camera_ = Camera();
 
+  //TODO : create a new shader for the model.frag/model.vert
   light_shader_ = Shader("data/shaders/hello_triangle/cube.vert", "data/shaders/hello_triangle/cube.frag");
   object_shader_ = Shader("data/shaders/hello_triangle/materials.vert", "data/shaders/hello_triangle/materials.frag");
   reflective_cube_shader_ = Shader("data/shaders/hello_triangle/reflectivecube.vert", "data/shaders/hello_triangle/reflectivecube.frag");
   cubemap_shader_ = Shader("data/shaders/hello_cube_map/skybox.vert", "data/shaders/hello_cube_map/skybox.frag");
   framebuffer_shader_ = Shader("data/shaders/hello_triangle/framebuffer.vert", "data/shaders/hello_triangle/framebuffer.frag");
+  model_shader_ = Shader("data/shaders/hello_triangle/model.vert", "data/shaders/hello_triangle/model.frag");
+
+  // star_bit_ = Model("data/models/ImageToStl.com_starpiece.obj");
+  // back_pack_ = Model("data/models/backpack/backpack.mtl");
+
 
   framebuffer_.FramebufferInit(800, 600);
 
@@ -344,13 +355,13 @@ void HelloTriangle::Update(float dt) {
 
   //For reflective cubes
   reflective_cube_shader_.Use();
-  glm::mat4 model = glm::mat4(1.0f);
+  glm::mat4 light_model_ = glm::mat4(1.0f);
   glm::mat4 view = camera_.GetViewMatrix();
-  glm::mat4 projection = glm::mat4(1.0f);
+  glm::mat4 projection = glm::mat4(2.0f);
   projection = glm::perspective(glm::radians(camera_.Zoom), 1600.0f / 1200.0f, 0.1f, 100.0f);
 
-  model = glm::rotate(model, elapsed_time_ * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
-  reflective_cube_shader_.SetMat4("model", model);
+  light_model_ = glm::rotate(light_model_, elapsed_time_ * glm::radians(50.0f), glm::vec3(0.5f, 4.0f, 0.0f));
+  reflective_cube_shader_.SetMat4("model", light_model_);
   reflective_cube_shader_.SetMat4("view", view);
   reflective_cube_shader_.SetMat4("projection", projection);
   reflective_cube_shader_.SetVec3("cameraPos", camera_.Position);
@@ -363,10 +374,7 @@ void HelloTriangle::Update(float dt) {
   object_shader_.Use();
 
 // Set up light properties
-  glm::vec3 lightColor;
-  lightColor.x = (std::sin(elapsed_time_ * 2.0f));
-  lightColor.y = (std::sin(elapsed_time_ * 0.7f));
-  lightColor.z = (std::sin(elapsed_time_ * 1.3f));
+  glm::vec3 lightColor = glm::vec3(6.0f);
   glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f); // decrease the influence
   glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); // low influence
 
@@ -385,10 +393,10 @@ void HelloTriangle::Update(float dt) {
   object_shader_.SetVec3("viewPos", camera_.Position);
 
 // Set transformation matrices
-  model = glm::mat4(1.0f);
-  model = glm::translate(model, glm::vec3(2.0f, 2.0f, 2.0f));                   // Position the light object
-  model = glm::scale(model, glm::vec3(0.2f));          // Scale it down
-  object_shader_.SetMat4("model", model);
+  light_model_ = glm::mat4(1.0f);
+  light_model_ = glm::translate(light_model_, glm::vec3(0.0f, -1.0, 0.0f));                   // Position the light object
+  light_model_ = glm::scale(light_model_, glm::vec3(10.0f, 1.0f, 10.0f));          // Scale it down
+  object_shader_.SetMat4("model", light_model_);
   object_shader_.SetMat4("view", view);
   object_shader_.SetMat4("projection", projection);
 
@@ -399,15 +407,23 @@ void HelloTriangle::Update(float dt) {
   //For light
   light_shader_.Use();
 
-  model = glm::mat4(1.0f);
-  model = glm::translate(model, lightPos);
-  model = glm::scale(model, glm::vec3(0.2f));
-  light_shader_.SetMat4("model", model);
+  light_model_ = glm::mat4(1.0f);
+  light_model_ = glm::translate(light_model_, lightPos);
+  light_model_ = glm::scale(light_model_, glm::vec3(0.2f));
+
+  light_shader_.SetMat4("model", light_model_);
   light_shader_.SetMat4("view", view);
   light_shader_.SetMat4("projection", projection);
 
   lightVAO.Bind();
   glDrawArrays(GL_TRIANGLES, 0, 36);
+
+  //For model
+  auto model = glm::mat4(1.0f);
+  model = glm::translate(model, glm::vec3(2.0f, 0.0f, 2.0f));
+  model = glm::scale(model, glm::vec3(0.005f));
+  model_shader_.SetMat4("model", model);
+  star_bit_.Draw(model_shader_);
 
   //For Skybox
   glDepthFunc(GL_LEQUAL);

@@ -95,7 +95,7 @@ file(GLOB_RECURSE COMMON_FILES src/*.cpp include/*.h)
 add_library(Common STATIC ${COMMON_FILES} ${SHADER_FILES}
         include/camera.h)
 target_include_directories(Common PUBLIC include/  ${Stb_INCLUDE_DIR})
-target_link_libraries(Common PUBLIC GLEW::GLEW glm::glm SDL2::SDL2 SDL2::SDL2main imgui::imgui)
+target_link_libraries(Common PUBLIC GLEW::GLEW glm::glm SDL2::SDL2 SDL2::SDL2main imgui::imgui assimp::assimp)
 set_target_properties(Common PROPERTIES UNITY_BUILD ON)
 add_dependencies(Common shader_target data_target)
 
